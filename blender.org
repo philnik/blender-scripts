@@ -1,0 +1,46 @@
+
+
+
+
+
+#+begin_src python
+
+import sys
+
+
+filename = "/home/me/blender/blender0.py"
+exec(compile(open(filename).read(), filename, 'exec'))
+
+
+#delme()
+
+
+
+#add_cubes()
+#work_on_materials()
+
+
+#add_this()
+
+selected_objs = bpy.context.selected_objects
+
+for obj in selected_objs:
+    #get name of object
+    name = obj.name
+    
+    # check if object has material same as object name
+    # if there is then continue to next object
+    
+    #create new material with name of object
+    #new_mat = bpy.data.materials.new(name)
+    new_mat = bpy.data.materials.get("Cube")
+    #add new material to object
+    obj.data.materials[0]=new_mat
+    #added material will be last in material slots
+    #so make last slot active
+    obj.active_material_index = 0
+    #len(obj.data.materials) - 1 
+
+
+
+#+end_src
