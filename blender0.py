@@ -9,6 +9,44 @@ from random import random
 import bpy
 print("------")
 
+ob = bpy.context.scene.objects["Cube"]       # Get the object
+bpy.ops.object.select_all(action='DESELECT') # Deselect all objects
+bpy.context.view_layer.objects.active = ob   # Make the cube the active object 
+ob.select_set(True)                          # Select the cube
+
+def apply_material_to_object(material_name, object_name):
+    ob = bpy.context.active_object
+
+    ob = bpy.context.scene.objects[object_name]       # Get the object
+    bpy.ops.object.select_all(action='DESELECT') # Deselect all objects
+    bpy.context.view_layer.objects.active = ob   # Make the cube the active object 
+    ob.select_set(True)                          # Select the cube
+
+    # Get material
+    mat = bpy.data.materials.get(material_name)
+    if mat is None:
+        # create material
+        mat = bpy.data.materials.new(name=material_name)
+
+    # Assign it to object
+    if ob.data.materials:
+        # assign to 1st material slot
+        ob.data.materials[0] = mat
+    else:
+        # no slots
+        ob.data.materials.append(mat)
+
+
+        
+#apply_material_to_object("red","Cube")
+#apply_material_to_object("yellow","Cube.002")
+#apply_material_to_object("red","Torus")
+
+
+
+
+        
+
 class Material:
 
     def set_cycles(self):
