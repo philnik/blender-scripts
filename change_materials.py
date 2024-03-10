@@ -9,13 +9,21 @@ material = bpy.data.materials.get(material_name)
 
 
 def change_name():
+    """
+    move data name to object name
+    this is because name makes no sense,
+    while data name is the actually imported name from CAD file
+    """
     obj_list = [i for i in bpy.context.scene.objects]
     for i in obj_list:
         if i.type == 'MESH':
             i.name = i.data.name
-    
+
 
 def change_material(reg, material_name):
+    """
+    change material of objects that include pattern `reg'
+    """
     obj_list = [i for i in bpy.context.scene.objects]
     # material_name = 'white_silver'
     material = bpy.data.materials.get(material_name)
@@ -28,10 +36,7 @@ def change_material(reg, material_name):
                     mesh_material[0]=material 
                 else:
                     mesh_material.append(material)
-                    
-                    
 
-fname = "/home/me/blender/psa.blend"
 
 def make_all_variables_global():
     # Get the current global namespace
@@ -48,13 +53,8 @@ def make_all_variables_global():
 # code = exec(open('/home/me/blender/blender.py').read())
 
 def run_script():
-    code = exec(open('/home/me/blender/blender.py').read())
+    code = exec(open('/home/me/blender/blender-scripts/blender.py').read())
     # make_all_variables_global()
-
-
-obj_list = [i for i in bpy.context.scene.objects]
-
-# print(obj_list)
 
 
 def get_object_names():
@@ -68,21 +68,12 @@ def get_object_names():
     return res    
 
 
-# print(get_object_names())
-
-obj0 = obj_list[0]
-
-a=1
-
 def get_blender_objects():
     objects = []
     for obj in bpy.context.scene.objects:
         objects.append(obj.name)
-    #print(objects)    
     return objects
 
-# Change this to the path of your .blend file
-# bpy.ops.wm.open_mainfile(filepath=fname)
 
 blender_objects = get_blender_objects()
 
