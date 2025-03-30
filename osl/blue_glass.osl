@@ -1,0 +1,19 @@
+shader my_glass_shader(
+    color base_color = color(1, 1, 1),
+    float roughness = 0.1,
+    float eta = 1.5,  // IOR for glass
+    output closure color out_closure = 0
+)
+{
+// model	string	Type of microfacet BRDF ("beckmann" or "ggx")
+// N	normal	Surface normal (direction of reflection)
+// roughness	float	Surface roughness (0 = smooth, 1 = rough)
+// eta	float	Index of refraction (IOR) of the material
+// refract	int	1 for refraction, 0 for reflection
+
+    closure color reflection1 = microfacet("ggx", N, roughness, eta, 0);
+    closure color refraction1 = microfacet("ggx", N, roughness, eta, 1);
+    
+    // Mix reflection and refraction
+    out_closure = base_color * (reflection1 + refraction1);
+}
