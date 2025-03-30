@@ -1,0 +1,11 @@
+// mirror.osl
+shader mirror(
+    color ReflectionColor = color(1.0),  // Mirror tint (white = pure mirror)
+    output closure color BSDF = 0        // Output closure
+)
+{
+    // Create perfect specular reflection
+    normal Nn = normalize(N);
+   // closure color refl = microfacet_ggx_reflection(Nn, 0.0) * ReflectionColor;
+    BSDF = reflection(Nn) * ReflectionColor;
+}
