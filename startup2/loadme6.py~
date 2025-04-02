@@ -1,0 +1,49 @@
+import bpy
+import sys
+
+def eval_python_file(filepath):
+    with open(filepath, "r") as f:
+        code = f.read()
+        exec(code, sys.modules["__main__"].__dict__)  # Executes in Blender's global scope
+
+def r1():
+    with open("c:/Users/filip/AppData/Roaming/blender/scripts/startup/loadme6.py") as f:
+        code = f.read()
+        exec(code, globals())
+
+def r2():
+    eval_python_file("c:/Users/filip/AppData/Roaming/blender/scripts/startup/loadme6.py")
+
+
+
+def hello():
+    print("it works")
+
+def reload():
+    from loadme3 import (hello,
+                        hello2)
+
+def hello2():
+    print("h")
+
+def h2():
+    print("reload")
+
+def h3():
+    print("reload3")
+
+def h4():
+    print("reload4")
+
+
+def h5():
+    print("reload5")
+
+
+def h6():
+    print("reload6")
+
+
+def h7():
+    print("reload7")
+

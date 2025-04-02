@@ -1,0 +1,8 @@
+shader surface_emitter(
+    color emission_color = color(1, 1, 1),   // White light by default
+    float intensity = 5.0,                   // Emission strength
+    output closure color out_closure = 0
+)
+{
+    out_closure = intensity * emission_color * emission();
+}

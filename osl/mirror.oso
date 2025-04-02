@@ -1,0 +1,25 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.13.7.0
+# options: -o C:\Users\filip\AppData\Local\Temp\tmpw6nk1lxi.oso -IC:\Program Files\Blender Foundation\Blender 4.3\4.3\scripts\addons_core\cycles\shader
+shader mirror
+param	color	ReflectionColor	1 1 1		%read{3,3} %write{2147483647,-1}
+oparam	closure color	BSDF			%read{2147483647,-1} %write{3,3}
+global	normal	N	%read{0,0} %write{2147483647,-1}
+local	normal	Nn	%read{2,2} %write{0,0}
+temp	closure color	$tmp1	%read{3,3} %write{2,2}
+const	string	$const1	"reflection"		%read{1,2} %write{2147483647,-1}
+const	float	$const2	0		%read{2,2} %write{2147483647,-1}
+code ___main___
+# c:/Users/filip/AppData/Roaming/blender/scripts/osl/mirror.osl:8
+#     normal Nn = normalize(N);
+	normalize	Nn N 	%filename{"c:/Users/filip/AppData/Roaming/blender/scripts/osl/mirror.osl"} %line{8} %argrw{"wr"}
+# c:/Users/filip/AppData/Roaming/blender/scripts/osl/mirror.osl:10
+#     BSDF = reflection(Nn) * ReflectionColor;
+	functioncall	$const1 3 	%line{10} %argrw{"r"}
+# C:\\\\Program Files\\\\Blender Foundation\\\\Blender 4.3\\\\4.3\\\\scripts\\\\addons_core\\\\cycles\\\\shader/stdosl.h:466
+# closure color reflection(normal N) { return reflection (N, 0.0); }
+	closure		$tmp1 $const1 Nn $const2 	%filename{"C:\\\\Program Files\\\\Blender Foundation\\\\Blender 4.3\\\\4.3\\\\scripts\\\\addons_core\\\\cycles\\\\shader/stdosl.h"} %line{466} %argrw{"wrrr"}
+# c:/Users/filip/AppData/Roaming/blender/scripts/osl/mirror.osl:10
+#     BSDF = reflection(Nn) * ReflectionColor;
+	mul		BSDF $tmp1 ReflectionColor 	%filename{"c:/Users/filip/AppData/Roaming/blender/scripts/osl/mirror.osl"} %line{10} %argrw{"wrr"}
+	end

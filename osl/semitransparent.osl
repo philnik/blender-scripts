@@ -1,0 +1,14 @@
+// simple_semitransparent.osl
+shader simple_semitransparent(
+    color BaseColor = color(0.8, 0.8, 0.8),  // Surface color
+    float Transparency = 0.5,                // 0=opaque, 1=fully transparent
+    output closure color BSDF = 0             // Output closure
+)
+{
+    // Calculate components using valid OSL closures
+    closure color surface = diffuse(N) * BaseColor * (1 - Transparency);
+    closure color transparent1 = transparent() * color(Transparency);
+    
+    // Combine components
+    BSDF = surface + transparent1;
+}

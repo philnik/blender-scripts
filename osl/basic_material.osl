@@ -1,0 +1,12 @@
+shader basic_shader(
+    vector inputUV = vector(0.0,0.0,0.0),
+    output color basic_uv = color(0.0, 0.0, 0.0),
+    output color out_color = color(0.0, 0.0, 0.0)
+    )
+{
+    // Use the OSL global variables U, V
+    basic_uv = color(u,v,0);
+    
+    // Use the input vector
+    out_color = color(inputUV[0],inputUV[1],0);
+}
