@@ -1,10 +1,12 @@
 import bpy
-
+#blender --background --python test_shader.py
+#C:/blender-4.4.0/blender.exe --background --python test_osl_shader.py 
 # Clear existing data
+# "C:\Program Files\Blender Foundation\Blender 4.3\blender.exe"
 bpy.ops.wm.read_factory_settings(use_empty=True)
 
 # Load the OSL shader
-shader_path = "./osl/simple_material.osl"
+shader_path = "./osl/node_velvet.osl"
 material = bpy.data.materials.new(name="OSL_Test")
 material.use_nodes = True
 nodes = material.node_tree.nodes
